@@ -13,8 +13,9 @@ import (
 )
 
 // Example decodes a SET carrying a RISC account-disabled event into its typed
-// Go value. The blank import of go-risc (see the package documentation) wires
-// every RISC decoder into go-secevent's registry.
+// Go value. Importing go-risc (here by name, for its URI constants; a blank
+// import works when only the side effect is wanted) registers every RISC
+// decoder into go-secevent's registry via the package init.
 func Example() {
 	payload := []byte(`{
 		"iss": "https://idp.example.com/",
