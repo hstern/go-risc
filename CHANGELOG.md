@@ -7,6 +7,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0]
+
+### Added
+
+- Producer-side `New…` constructors for every non-deprecated event type
+  (`NewAccountDisabled`, `NewCredentialCompromise`, …). The required
+  subject is a positional argument, so an event can be built in a single
+  expression and "forgot the subject" is a compile error rather than a
+  runtime `AddTo` failure. `NewCredentialCompromise` also takes its
+  required `credential_type` positionally. The deprecated
+  `sessions-revoked` event has no constructor by design.
+
+### Changed
+
+- `ExampleAddTo` and the README now build events with the constructors
+  instead of declaring a value and assigning `Subject` separately. No
+  wire-shape or decode-path change.
+
 ## [0.1.0]
 
 Initial release: the OpenID RISC Profile 1.0 event vocabulary.
@@ -29,5 +47,6 @@ Initial release: the OpenID RISC Profile 1.0 event vocabulary.
 - Byte-stable preservation of unrecognized event-payload members via
   each event's `Extra` map.
 
-[Unreleased]: https://github.com/hstern/go-risc/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/hstern/go-risc/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/hstern/go-risc/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/hstern/go-risc/releases/tag/v0.1.0
