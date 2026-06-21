@@ -1,0 +1,9 @@
+{
+  "iss": "https://idp.example.com/",
+  "iat": 1615306200,
+  "jti": "risc-identifier-changed-0001",
+  "aud": "https://receiver.example.com/risc",
+  "events": {
+    "https://schemas.openid.net/secevent/risc/event-type/identifier-changed": {"subject":{"format":"email","email":"user@example.com"},"new-value":"new@example.com"}
+  }
+}
