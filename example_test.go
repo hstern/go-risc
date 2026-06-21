@@ -43,12 +43,13 @@ func Example() {
 }
 
 // ExampleAddTo builds a RISC event and places it in a SET's events claim. The
-// subject is set by assignment because it is carried on every RISC event.
+// constructor takes the required subject positionally; optional members such
+// as Reason are set on the returned value.
 func ExampleAddTo() {
 	events := secevent.Events{}
 
-	e := risc.AccountDisabled{Reason: "bulk-account"}
-	e.Subject = subjectid.IssSubID{Iss: "https://idp.example.com/", Sub: "user-7f3e2a"}
+	e := risc.NewAccountDisabled(subjectid.IssSubID{Iss: "https://idp.example.com/", Sub: "user-7f3e2a"})
+	e.Reason = "bulk-account"
 
 	if err := risc.AddTo(events, e); err != nil {
 		panic(err)

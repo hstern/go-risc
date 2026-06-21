@@ -76,20 +76,28 @@ An event-type URI this build does not import stays raw in
 
 ## Build a RISC event into a SET
 
-The `subject` is carried on every RISC event; set it by assignment,
-then `AddTo` validates and stores the event under its URI.
+Each event type has a `New…` constructor that takes the required
+`subject` (and any other required field) positionally; optional members
+are set on the returned value. `AddTo` then validates and stores the
+event under its URI.
 
 ```go
 events := secevent.Events{}
 
-e := risc.AccountDisabled{Reason: "hijacking"}
-e.Subject = subjectid.IssSubID{Iss: "https://idp.example.com/", Sub: "user-7f3e2a"}
+e := risc.NewAccountDisabled(subjectid.IssSubID{Iss: "https://idp.example.com/", Sub: "user-7f3e2a"})
+e.Reason = "hijacking"
 
 if err := risc.AddTo(events, e); err != nil {
 	return err // e.g. a credential-compromise missing its credential_type
 }
 // events now carries the account-disabled member, ready for a *secevent.SET.
 ```
+
+`credential-compromise` carries a second required field, so its
+constructor takes it positionally:
+`risc.NewCredentialCompromise(subject, "password")`. The deprecated
+`sessions-revoked` event has no constructor by design; prefer the CAEP
+`session-revoked` event.
 
 `AddTo` applies the library's strict-marshal contract: it calls
 `Validate` first and refuses to emit a half-built event.
