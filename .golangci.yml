@@ -1,0 +1,20 @@
+version: "2"
+linters:
+  enable:
+    - errcheck
+    - govet
+    - ineffassign
+    - staticcheck
+    - unused
+    - misspell
+    - revive
+  exclusions:
+    rules:
+      # This package intentionally references its own deprecated
+      # SessionsRevoked event type (the RISC profile deprecates it, but
+      # deployed SETs still carry it, so it must be registered and tested).
+      # Suppress SA1019 for those self-references; downstream consumers using
+      # their own linter config still see the deprecation warning.
+      - linters: [staticcheck]
+        text: "SA1019"
+        source: "SessionsRevoked"

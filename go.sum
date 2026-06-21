@@ -1,0 +1,4 @@
+github.com/hstern/go-secevent v0.1.0 h1:y6Of4UZAEpHlxl2jFls6EUPsxUDMtd+GOj4iVSrZvZY=
+github.com/hstern/go-secevent v0.1.0/go.mod h1:1GoZqZ/6hrwCxaJrEMgtd4NxjTFqWln9VbDMI83JLCI=
+github.com/hstern/go-subjectid v0.0.0-20260525222327-b47140763585 h1:dDFXd9djpbmlAOSlzIbFunmu6YVnzMcOnxPH+ySINZ0=
+github.com/hstern/go-subjectid v0.0.0-20260525222327-b47140763585/go.mod h1:KS0TexS0PZQe7CnntjRRzcufxLdMji1DMVpxiBqCvRM=
